@@ -14,7 +14,7 @@ let directionsRecorded = [];
 let score = 0;
 let initialSmallText = '. . .';
 let gameStatus = true;
-const startingTimeInterval = 2000;
+const startingTimeInterval = 2500;
 
 // Game functions
 function selectValueAtRandom(arr) {
@@ -153,7 +153,7 @@ function getSpeed(score) {
     const multiplier = score/10;
     let newTime = startingTimeInterval;
     if (multiplier > 3) {
-        newTime *= (1 - (multiplier/40));
+        newTime *= (1 - (multiplier/100));
     }
     return newTime;
 }
