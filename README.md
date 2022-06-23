@@ -5,7 +5,7 @@
 
 ## What is directions?
 
-directions is a challenging web game that requires you to match directions with arrow keys in 2 seconds or less.
+directions is a challenging web game that requires you to follow on-screen commands using arrow keys in 2 seconds or less.
 
 <a href="https://jonathanward.github.io/directions-game/">Click here to play!</a>
 
