@@ -7,6 +7,8 @@
 
 directions is a challenging web game that requires you to match directions with arrow keys in 2 seconds or less.
 
+<a href="https://jonathanward.github.io/directions-game/">Click here to play!</a>
+
 ## How does it work?
 
 ### Gameplay
