@@ -14,7 +14,7 @@ let directionsRecorded = [];
 let score = 0;
 let initialSmallText = '. . .';
 let gameStatus = true;
-const startingTimeInterval = 2500;
+const startingTimeInterval = 2200;
 
 // Game functions
 function selectValueAtRandom(arr) {
