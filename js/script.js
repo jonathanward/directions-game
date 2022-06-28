@@ -1,6 +1,6 @@
 const directions = ['up', 'down', 'left', 'right'];
 const multipliers = ['x2', 'x3'];
-const colors = ['#6CC5D9', '#F2D857', '#F2B279', '#F2762E'];
+const colors = ['#6CC5D9', '#F2D857', '#F2B279', '#F2762E', '#DC3A4B', '#0FD081'];
 
 // Document elements
 const messageLine = document.getElementById('message-line');
@@ -14,7 +14,7 @@ let directionsRecorded = [];
 let score = 0;
 let initialSmallText = '. . .';
 let gameStatus = true;
-const startingTimeInterval = 2200;
+const startingTimeInterval = 2100;
 
 // Game functions
 function selectValueAtRandom(arr) {
@@ -133,11 +133,19 @@ function checkUserInput() {
 }
 
 function addTextToSmallText(text) {
+    const wordColor = getWordColor(directionsRecorded.length - 1);
     if (smallText.innerHTML === initialSmallText) {
-        smallText.innerHTML = text;
+        smallText.innerHTML = '<span style="color:' + wordColor + '">' + text + '</span>';
     } else {
-        smallText.innerHTML += ', ' + text;
+        smallText.innerHTML += ', <span style="color:' + wordColor + '">' + text + '</span>';
     }
+}
+
+function getWordColor(wordNumber) {
+    if (actualDirections[wordNumber] === directionsRecorded[wordNumber]) {
+        return colors[5];
+    }
+    return colors[4];
 }
 
 function increaseScore() {
