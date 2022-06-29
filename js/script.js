@@ -214,6 +214,12 @@ function setEndGameMessage() {
     smallText.innerHTML = '<span style="color:#F2D857;">score: ' + score + '</span><span style="color:#6CC5D9;"> play again?</span>';
 }
 
+function addPlayAgainInstructions() {
+    instructions.style.opacity = .95;
+    instructions.style.color = '#FFFFFF';
+    instructions.innerHTML = "Press any key";
+}
+
 function startGame(currentSpeed) {
     clearTimeout(instructionsTimeout);
     window.removeEventListener('click', advanceGame);
@@ -241,6 +247,9 @@ function endGame() {
         window.addEventListener('keydown', reloadPage);
         window.addEventListener('click', reloadPage);
     }, 500);
+    instructions.style.opacity = 0;
+    playAgainInstructionsTimeout = setTimeout(addPlayAgainInstructions, 1200);
+    
 }
 
 function advanceGame() {
