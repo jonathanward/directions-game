@@ -161,3 +161,10 @@ p {
         font-size: 6vh;
     }
 }
+
+@media only screen and (max-height: 740px) {   
+    #button-table {
+        bottom: -1.4em;
+        font-size: 6vh;
+    }
+}
