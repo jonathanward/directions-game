@@ -234,7 +234,7 @@ function startGame(currentSpeed) {
     clearTimeout(instructionsTimeout);
     window.removeEventListener('click', advanceGame);
     window.removeEventListener('keydown', advanceGame);
-    window.removeEventListener('touchstart', handleMobileStart);
+    window.removeEventListener('touchend', handleMobileStart);
     window.addEventListener('keydown', checkArrowDirection);
     clock.style.opacity = 1;
     clock.style.color = '#a9a9a9';
@@ -260,7 +260,7 @@ function endGame() {
     setTimeout(function() {
         window.addEventListener('keydown', reloadPage);
         window.addEventListener('click', reloadPage);
-        window.addEventListener('touchstart', reloadPage);
+        window.addEventListener('touchend', reloadPage);
     }, 500);
     instructions.style.opacity = 0;
     playAgainInstructionsTimeout = setTimeout(addPlayAgainInstructions, 1200);
@@ -293,18 +293,18 @@ function advanceGame() {
 function handleMobileStart() {
     isTouchEnabled = true;
     mobileButtons.style.display = 'flex';
-    mobileUpArrow.addEventListener('touchstart', pressUpArrowKey);
-    mobileLeftArrow.addEventListener('touchstart', pressLeftArrowKey);
-    mobileRightArrow.addEventListener('touchstart', pressRightArrowKey);
-    mobileDownArrow.addEventListener('touchstart', pressDownArrowKey);
+    mobileUpArrow.addEventListener('touchend', pressUpArrowKey);
+    mobileLeftArrow.addEventListener('touchend', pressLeftArrowKey);
+    mobileRightArrow.addEventListener('touchend', pressRightArrowKey);
+    mobileDownArrow.addEventListener('touchend', pressDownArrowKey);
     advanceGame();
 }
 
 function handleMobileEnd() {
-    mobileUpArrow.removeEventListener('touchstart', pressUpArrowKey);
-    mobileLeftArrow.removeEventListener('touchstart', pressLeftArrowKey);
-    mobileRightArrow.removeEventListener('touchstart', pressRightArrowKey);
-    mobileDownArrow.removeEventListener('touchstart', pressDownArrowKey);
+    mobileUpArrow.removeEventListener('touchend', pressUpArrowKey);
+    mobileLeftArrow.removeEventListener('touchend', pressLeftArrowKey);
+    mobileRightArrow.removeEventListener('touchend', pressRightArrowKey);
+    mobileDownArrow.removeEventListener('touchend', pressDownArrowKey);
 }
 
 function changeArrowColor(key) {
@@ -337,7 +337,7 @@ function pressDownArrowKey() {
 // Start game here
 window.addEventListener('click', advanceGame);
 window.addEventListener('keydown', advanceGame);
-window.addEventListener('touchstart', handleMobileStart);
+window.addEventListener('touchend', handleMobileStart);
 
 instructionsTimeout = setTimeout(addInstructions, 800);
 
