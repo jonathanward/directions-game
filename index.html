@@ -25,11 +25,30 @@
     <div id="game-container">
         <div id="game-content">
             <p id="message-line">directions</p>
-            <p id="small-text">press any key to start</p>
+            <p id="small-text">press <span class="desktop-prompt">any key</span><span class="mobile-prompt">anywhere</span> to start</p>
         </div>
     </div>
     <div id="instructions-container">
         <p id="instructions">Match the direction(s) given with the correct arrow key in 2 seconds or less.</p>
+    </div>
+    <div id="mobile-buttons">
+        <table id="button-table">
+            <tr>
+                <td></td>
+                <td id="up-arrow">&#8679</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="left-arrow">&#8678</td>
+                <td></td>
+                <td id="right-arrow">&#8680</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td id="down-arrow">&#8681</td>
+                <td></td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

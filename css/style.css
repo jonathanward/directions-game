@@ -64,6 +64,24 @@ p {
     transition: opacity 800ms ease-in, color 800ms ease-in-out;
 }
 
+#mobile-buttons {
+    display: none;
+}
+
+.mobile-prompt {
+    display: none;
+}
+
+#button-table {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 6vh;
+}
+
 @media only screen and (max-width: 830px) {
     #instructions {
         width: 80%;
@@ -101,5 +119,45 @@ p {
     #instructions {
         font-size: 4vh;
     }
+
+    .mobile-prompt {
+        display: inline-block;
+    }
+
+    .desktop-prompt {
+        display: none;
+    }
 }
 
+@media only screen and (max-height: 900px) and (max-width: 500px) {
+    #instructions {
+        top: 10%;
+        bottom: 100%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .mobile-prompt {
+        display: inline-block;
+    }
+
+    .desktop-prompt {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 780px) {
+    #clock {
+        top: 32%;
+    }
+
+    #game-content {
+        top: 45%;
+    }
+    
+    #button-table {
+        bottom: -.6em;
+        font-size: 7vh;
+    }
+}

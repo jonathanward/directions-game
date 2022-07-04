@@ -7,6 +7,11 @@ const messageLine = document.getElementById('message-line');
 const smallText = document.getElementById('small-text');
 const clock = document.getElementById('clock');
 const instructions = document.getElementById('instructions');
+const mobileButtons = document.getElementById('mobile-buttons');
+const mobileUpArrow = document.getElementById('up-arrow');
+const mobileLeftArrow = document.getElementById('left-arrow');
+const mobileRightArrow = document.getElementById('right-arrow');
+const mobileDownArrow = document.getElementById('down-arrow');
 
 // Game data
 let actualDirections = [];
@@ -14,6 +19,7 @@ let directionsRecorded = [];
 let score = 0;
 let initialSmallText = '. . .';
 let gameStatus = true;
+let isTouchEnabled = false;
 const startingTimeInterval = 2100;
 
 // Game functions
@@ -217,13 +223,18 @@ function setEndGameMessage() {
 function addPlayAgainInstructions() {
     instructions.style.opacity = .95;
     instructions.style.color = '#FFFFFF';
-    instructions.innerHTML = "Press any key";
+    if (isTouchEnabled) {
+        instructions.innerHTML = "Press anywhere";
+    } else {
+        instructions.innerHTML = "Press any key";
+    }
 }
 
 function startGame(currentSpeed) {
     clearTimeout(instructionsTimeout);
     window.removeEventListener('click', advanceGame);
     window.removeEventListener('keydown', advanceGame);
+    window.removeEventListener('touchstart', handleMobileStart);
     window.addEventListener('keydown', checkArrowDirection);
     clock.style.opacity = 1;
     clock.style.color = '#a9a9a9';
@@ -241,11 +252,15 @@ function endGame() {
     gameStatus = false;
     clearAllIntervals();
     window.removeEventListener('keydown', checkArrowDirection);
+    if (isTouchEnabled) {
+        handleMobileEnd();
+    }
     styleEndGameClock();
     setEndGameMessage();
     setTimeout(function() {
         window.addEventListener('keydown', reloadPage);
         window.addEventListener('click', reloadPage);
+        window.addEventListener('touchstart', reloadPage);
     }, 500);
     instructions.style.opacity = 0;
     playAgainInstructionsTimeout = setTimeout(addPlayAgainInstructions, 1200);
@@ -275,9 +290,54 @@ function advanceGame() {
     }
 }
 
+function handleMobileStart() {
+    isTouchEnabled = true;
+    mobileButtons.style.display = 'flex';
+    mobileUpArrow.addEventListener('touchstart', pressUpArrowKey);
+    mobileLeftArrow.addEventListener('touchstart', pressLeftArrowKey);
+    mobileRightArrow.addEventListener('touchstart', pressRightArrowKey);
+    mobileDownArrow.addEventListener('touchstart', pressDownArrowKey);
+    advanceGame();
+}
+
+function handleMobileEnd() {
+    mobileUpArrow.removeEventListener('touchstart', pressUpArrowKey);
+    mobileLeftArrow.removeEventListener('touchstart', pressLeftArrowKey);
+    mobileRightArrow.removeEventListener('touchstart', pressRightArrowKey);
+    mobileDownArrow.removeEventListener('touchstart', pressDownArrowKey);
+}
+
+function changeArrowColor(key) {
+    key.style.color = '#F2B279';
+    setTimeout(function() {
+        key.style.color = '#FFFFFF';
+    }, 200);
+}
+
+function pressUpArrowKey() {
+    window.dispatchEvent(new KeyboardEvent('keydown', {'key': 'ArrowUp'}));
+    changeArrowColor(mobileUpArrow);
+}
+
+function pressLeftArrowKey() {
+    window.dispatchEvent(new KeyboardEvent('keydown', {'key': 'ArrowLeft'}));
+    changeArrowColor(mobileLeftArrow);
+}
+
+function pressRightArrowKey() {
+    window.dispatchEvent(new KeyboardEvent('keydown', {'key': 'ArrowRight'}));
+    changeArrowColor(mobileRightArrow);
+}
+
+function pressDownArrowKey() {
+    window.dispatchEvent(new KeyboardEvent('keydown', {'key': 'ArrowDown'}));
+    changeArrowColor(mobileDownArrow);
+}
+
 // Start game here
 window.addEventListener('click', advanceGame);
 window.addEventListener('keydown', advanceGame);
+window.addEventListener('touchstart', handleMobileStart);
 
 instructionsTimeout = setTimeout(addInstructions, 800);
 
