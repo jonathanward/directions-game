@@ -4,6 +4,10 @@ html, body {
     padding: 0;
 }
 
+body {
+    touch-action: none;
+}
+
 p {
     margin: 0;
     font-family: 'Anek Latin', sans-serif;
