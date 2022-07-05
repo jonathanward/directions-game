@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-    touch-action: none;
+    touch-action: manipulation;
 }
 
 p {
